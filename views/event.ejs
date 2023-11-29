@@ -1,0 +1,26 @@
+<%- include('./partials/header.ejs') %>
+    <main id = "event-details-content">
+        <div id = "event-basic-info">
+            <h3><%= event.dateStart %>  -  <%= event.dateEnd %> </h3>         
+            <h1><%= event.title %> </h1> 
+            <h3>Hosted by <%= event.host %></h3>
+        </div>
+        <div id = "description-container-experimental">
+            <img src = "<%= event.image %>" alt = "adam savage event picture">
+            <div id = "text-description">
+                <p id = 'description'> <%= event.content %> </p>
+                <div id = "bottom-matter">
+                    <div id = "time-and-place">
+                        <h4>Event organizer: <%= event.createdBy.firstName + " " + event.createdBy.lastName %></h4>
+
+                        <h4> Event type: <%= event.category %></h4>
+                        <h4> Where: <%= event.location %> </h4>   
+                    </div>
+                
+                </div>
+            </div>
+          
+        </div>
+        
+    </main>
+    <%- include('./partials/footer.ejs') %>

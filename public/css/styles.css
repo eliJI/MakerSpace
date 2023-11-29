@@ -1,0 +1,479 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(241, 241, 241);
+    height: 100vh;
+
+}
+
+body * {
+    margin: 0;
+    font-family: 'Raleway', 'Courier', monospace;
+    /*box-sizing: border-box;*/
+}
+
+a {
+    text-decoration: none;
+}
+
+/*--------------------HEADER-----------------------*/
+
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+#user-navigation {
+    display: flex;
+    background-color: rgb(255, 221, 28);
+    align-items: center;
+    justify-content: space-between;
+}
+
+#user-navigation > * {
+    padding-inline: 2rem;
+    font-size: 1.2em;
+}
+
+
+ul {
+    padding: 2rem;
+    list-style-type: none;
+}
+
+ul li{
+    padding-inline-start: 1rem;
+}
+
+#navigation-right-options {
+    display: flex;
+    list-style-type: none;
+}
+
+#general-site-navigation {
+    padding: 1rem;
+    display: flex;
+    padding-inline: 2rem;
+    background-color: rgb(44, 44, 44);
+    color: white;
+
+}
+
+#general-site-navigation > *{
+    font-size: 1.3em;
+    color: white;
+}
+
+#general-site-navigation a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+
+#header li {
+    transition: all 200ms ease-in-out;
+}
+
+#header li:hover { 
+    transform: scale(1.2);
+}
+
+#header h3 {
+    transition: 200ms ease-in-out;
+}
+
+#header h3:hover { 
+    transform: scale(1.2);
+}
+
+/*-----------------------FOOTER---------------------*/
+footer {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(255, 221, 28);
+    padding:1rem;
+}
+
+footer > * {
+    margin-inline: 1rem;
+}
+
+/*--------------------LANDING PAGE------------------*/
+
+#landing-content {
+    padding: 1rem;
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+
+}
+
+#landing-content p{
+    margin-top: 1rem;
+   font-size: 1.5rem;
+}
+
+#landing-content h1{
+    margin-bottom: 2rem;
+    font-size: 4rem;
+}
+
+#intro-container {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*outline: 1px solid purple;*/
+
+}
+
+#intro-container *{
+    margin-inline: 1rem;
+    max-width: 40ch;
+}
+
+
+#title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /*outline: 1px solid green;*/
+}
+
+
+/*---------------------EVENTS PAGE------------------*/
+
+#events-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#events-content > h2, #events-content > h3{
+    margin: 2rem;
+}
+
+
+#center-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+   
+}
+
+#center-container > *{
+    color: white;
+    margin: 1rem;
+}
+
+
+.event-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1em;
+    background-color: rgb(44, 44, 44);
+    min-width: 30ch;
+    max-width: 60ch;
+}
+
+.event-category > * {
+    margin: 1rem;
+}
+
+/*
+#workshops {
+    background-color: rgb(80, 80, 80);
+}
+
+#seminars {
+    background-color: rgb(44, 44, 44);
+}
+
+#meet-and-greet {
+    background-color: rgb(133, 133, 133);
+}
+*/
+a p {
+    color: white;
+}
+.event p, .event a {
+    transition: all 100ms ease-in-out;
+}
+
+.event p:hover, .event a:hover {
+    transform: scale(1.05);
+    color: rgb(255, 221, 28);
+}
+
+#no-event {
+    color: rgb(255, 221, 28);
+    background-color: rgb(44, 44, 44);
+    padding: 1rem;
+    border-radius: 0.5em;
+}
+
+/*---------------------NEW EVENT---------------------*/
+.inline-label-container {
+    display: flex;
+    
+
+}
+
+.inline-label-container > *{
+    margin: 0.5rem;
+    font-size: 2rem;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+
+.inline-label-container > label{
+   max-width: 10ch;
+}
+
+
+
+.inline-label-container > input[type=text], .inline-label-container > select, .inline-label-container > textarea, .inline-label-container > input[type=date]{
+    border-radius: 0.5em;
+    border-style: none;
+    border-color: rgb(44, 44, 44);
+}
+
+
+
+
+#new-event-content {
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    align-items: center;
+}
+
+input[type="submit"] {
+    color: white;
+    background-color: rgb(44, 44, 44);
+    border-style: none;
+    border-radius: 0.5em;
+    transition: all 100ms ease-in-out;
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.1);
+    color: rgb(255, 221, 28);
+ 
+}
+/*---------------------EVENT DETAILS PAGE---------------------*/
+
+
+#event-basic-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem;
+    justify-content: center;
+}
+
+#event-basic-info > *{
+    margin: 1rem;
+  
+}
+
+
+#event-details-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#description {
+    max-width: 80ch;
+}
+
+#event-details-content img {
+    width: 40%;
+    max-width: 800px;
+}
+
+#description-container-experimental {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     margin-bottom: 3rem;
+}
+#description-container-experimental > *{
+    margin: 1rem;
+}
+
+#text-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#time-and-place > *{
+    margin-top: 1rem;
+}
+
+#bottom-matter {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+#bottom-matter-controls button  {
+  
+    transition: all 100ms ease-in-out;
+}
+
+#bottom-matter-controls  * {
+    border-style: none;
+
+}
+
+
+#bottom-matter-controls button:hover {
+    transform: scale(1.2);
+}
+
+#bottom-matter-controls a {
+    color: black;
+    text-decoration: none;
+}
+
+footer a p{
+    color: black;
+    transition: all 100ms ease-in-out;
+}
+
+
+footer a p:hover{
+    transform: scale(1.2);
+}
+
+/*---------------------------CONTACT PAGE-------------------------------*/
+#contact-info > *{
+    margin: 2rem;
+}
+
+/*---------------------------ABOUT PAGE-------------------------------*/
+#makerspace-description {
+    max-width: 80ch;margin-inline: 1rem;
+}
+
+/*----------------------profile page--------------------------------------*/
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-container {
+    display: flex;
+    padding: 1rem;
+    margin: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(44, 44, 44);
+    border-radius: 0.5em;
+    width: 30vw;
+    max-width: 30vw;
+
+}
+.preview-container > *{
+    padding-inline: 1rem;
+
+}
+
+#bottom-matter-controls {
+    display: flex
+
+}
+#bottom-matter-controls > * {
+    margin: 0.5em;
+}
+
+.preview-container > p{
+    color: white;
+}
+
+/*----------------------error messages--------------------------------------*/
+.message {
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+#error {
+    background-color: #f2495f;
+}
+
+#success {
+    background-color: #34eb71;
+}
+
+/*------------login and sigup forms---------------------------*/
+
+.user-control-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-form > *{
+    display: flex;
+   
+}
+
+.form-item {
+    display: flex;
+    padding: 0.5rem;
+    justify-content: space-between;
+    width: 50ch;
+}
+
+
+.form-item > *{
+   font-size: 1.5em;
+}
+.form-item > *{
+   padding-top: 0.5rem;
+   padding-bottom: 0.5rem;
+}
+.user-form input[type="submit"] {
+    padding: 1rem;
+    margin: 1rem;
+    width: 20ch;
+    display: flex;
+    justify-content: center;
+    font-size: 1em;
+}

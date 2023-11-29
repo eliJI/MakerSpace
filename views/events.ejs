@@ -1,0 +1,24 @@
+<%- include('./partials/header.ejs') %>  
+    <main id = "events-content">
+      <h2>See something interesting? Click the event to find out more.</h2>
+      <div id = "center-container">
+        <% if(categories && events.length > 0) {%>
+          <% categories.forEach(category => { %>
+            <div class = 'event-category'>
+              <h4> <%= category %> </h4>
+              <% events.forEach(event => { %>
+                <% if (event.category === category) {%>
+                  <div class = "event">
+                  <a href = "/events/<%= event.id %>"><p><%= event.title %></p></a>
+                  </div>
+                <% } %>
+              <% }); %>
+            </div>
+          <% }); %>
+        <% } else { %>
+              <h1 id = "no-event">No events to display</h1>
+        <% } %>
+      </div>
+      <h3>Didn't see anything you like? Host your own event!</h3>      
+    </main>
+  <%- include('./partials/footer.ejs') %>

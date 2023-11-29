@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs') %>  
+    <main class = "user-control-container">
+        <form class = "user-form" action = '/users/login' method = 'POST' class="user-form">
+            <div class = form-item>
+                <label for="email">Email Address</label></td>
+                <input type="email" id="email" name="email" required></td>
+            </div>
+            
+            <div class = form-item>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+ 
+               
+            <input type="submit" value="Login">     
+        </form>
+  
+    </main>
+    <%- include('../partials/footer.ejs') %>  

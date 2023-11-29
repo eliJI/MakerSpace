@@ -1,0 +1,29 @@
+<%- include('../partials/header.ejs') %>  
+    <main class = "profile-container">
+        
+        <h1>Welcome back, <%=user.firstName%></h1>
+           <% if (events.length) { %>
+                <p>View your events</p>
+                <% events.forEach(event => { %>
+                    <a  href = '/events/<%= event.id %>'>
+                        <div class = 'preview-container'>
+                            <p>
+                                <%=event.title%>
+                            </p>
+                            <form id = "bottom-matter-controls">
+                                <button type = "submit" formmethod="GET" formaction="/events/<%= event._id %>/edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button type = "submit" formmethod="POST" formaction="/events/<%= event._id %>?_method=DELETE"><i class="fa-solid fa-trash-can"></i></button>
+                            </form>
+                        </div>                       
+                    </a>
+                      
+               <% });  %>   
+           <% } else { %>
+                <p>You have not created any events yet</p>
+           <% } %>
+            
+
+
+  
+    </main>
+    <%- include('../partials/footer.ejs') %>  
