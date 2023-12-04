@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const fname = uuidv4() + path.extname(file.originalname);
         let event = req.body;
-        event.image = "/uploads/"+fname;
+        event.image = fname;
         cb(null, fname);
     },
   

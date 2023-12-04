@@ -18,7 +18,7 @@ exports.validateNewEvent = [
     body('host', 'Please provide a host').notEmpty().trim().escape(),
     body('content', 'content must have 10 characters').notEmpty().isLength({min:10}).trim().escape(),
     body('location', 'location must be valid').notEmpty().trim().escape(),
-    body('image', 'please include an image').notEmpty().trim(),
+    body('image', 'please include an image').notEmpty().trim().escape(),
     body('dateStart', 'start date must be valid and after now').isAfter({comparisonDate: Date().toString()}).notEmpty().trim().escape().isISO8601(),
     body('dateEnd', 'end date must be valid and after start date').notEmpty().trim().escape().isISO8601().custom((dateEnd, {req}) => {
         let d1 =  new Date(req.body.dateStart).getTime();
@@ -38,7 +38,7 @@ exports.validateEditEvent = [
     body('host', 'Please provide a host').notEmpty().trim().escape(),
     body('content', 'content must have 10 characters').notEmpty().isLength({min:10}).trim().escape(),
     body('location', 'location must be valid').notEmpty().trim().escape(),
-    body('image', 'please include an image'),
+    body('image', 'please include an image').if(body('image').notEmpty()).trim().escape(),
     body('dateStart', 'start date must be valid and after now').isAfter({comparisonDate: Date().toString()}).notEmpty().trim().escape().isISO8601(),
     body('dateEnd', 'end date must be valid and after start date').notEmpty().trim().escape().isISO8601().custom((dateEnd, {req}) => {
         let d1 =  new Date(req.body.dateStart).getTime();
