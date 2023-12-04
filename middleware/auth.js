@@ -35,3 +35,22 @@ exports.isCreator = (req, res , next) => {
     })
     .catch(err => next(err));
 }
+
+
+exports.isNotCreator = (req, res , next) => {
+    let id = req.params.id;
+    EventModel.findById(id)
+    .then(event => {
+        if (event) {
+            if (event.createdBy != req.session.user.id) {
+                return next();
+            } else {
+        
+                let err = new Error('You are the creator of this post');
+                err.status  = 401;
+                next(err);
+            }
+        }
+    })
+    .catch(err => next(err));
+}

@@ -1,4 +1,5 @@
 const model = require('../models/event');
+const rsvpModel = require('../models/rsvp');
 const { DateTime } = require('luxon');
 const {v4: uuidv4} = require('uuid');
 
@@ -81,7 +82,7 @@ exports.new = (req, res) => {
 exports.edit = (req, res, next) => {
     let id = req.params.id;
     if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid event id');
         err.status = 400;
         next(err);
     }
@@ -113,7 +114,7 @@ exports.update = (req,res,next) => {
     console.log(event);
 
     if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid event id');
         err.status = 400;
         next(err);
     }
@@ -174,7 +175,7 @@ exports.create = (req, res, next) => {
 exports.show = (req, res, next) => {
     let id = req.params.id;
     if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid event id');
         err.status = 400;
         next(err);
     }
@@ -203,7 +204,7 @@ exports.show = (req, res, next) => {
 exports.delete = (req, res, next) => {
     let id = req.params.id;
     if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid event id');
         err.status = 400;
         next(err);
     }
@@ -211,8 +212,14 @@ exports.delete = (req, res, next) => {
     model.findByIdAndDelete(id)
     .then(event => {
         if (event) {
-            req.flash('success', 'Event Deleted');
-            res.redirect('/events');
+            rsvpModel.deleteMany({eventId: id})
+            .then(deleted => {
+                req.flash('success', 'Event Deleted');
+                res.redirect('/events'); 
+            })
+            .catch(err => {
+                next(err);
+            })
         } else {
             let err = new Error('Cannot delete event with ID: '+id);
             err.status = 404;
@@ -223,4 +230,45 @@ exports.delete = (req, res, next) => {
         next(err);
     });
 
+}
+
+//created/updates rsvp if it exists
+exports.rsvp = (req, res, next) => {
+
+    const eventId = req.params.id;
+    const userId = req.session.user.id;
+
+    if(!eventId.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid event or user id');
+        err.status = 400;
+        next(err);
+    }
+
+    if(!userId.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid event or user id');
+        err.status = 400;
+        next(err);
+    }
+
+    req.body.eventId = eventId;
+    req.body.userId= userId;
+    
+    rsvpModel.findOneAndUpdate(
+        {userId: userId, eventId: eventId},
+        req.body,
+        {new: true, upsert: true}
+    )
+    .then(rsvp => {
+        if (rsvp) {
+            req.flash('success','RSVP updated')
+            res.redirect('back')
+        } else {
+            let err = new Error('could not create rsvp');
+            err.status = 400;
+            next(err);
+        }
+    })
+    .catch(err => {
+        next(err)
+    })
 }

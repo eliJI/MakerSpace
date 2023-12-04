@@ -14,7 +14,16 @@
                         <h4>Event organizer: <%= event.createdBy.firstName + " " + event.createdBy.lastName %></h4>
 
                         <h4> Event type: <%= event.category %></h4>
-                        <h4> Where: <%= event.location %> </h4>   
+                        <h4> Where: <%= event.location %> </h4>
+                        
+                        <h4>Are you coming?</h4>
+                        <form id = "rsvp-controls">
+                            
+                            <button type = "submit" formmethod="POST" name="status"  value="YES" formaction="/events/<%= event._id %>/rsvp">YES</button>
+                            <button type = "submit" formmethod="POST" name="status"  value="NO" formaction="/events/<%= event._id %>/rsvp">NO</button>
+                            <button type = "submit" formmethod="POST" name="status" value="MAYBE" formaction="/events/<%= event._id %>/rsvp">MAYBE</button>
+                        </form>  
+                        <h4>Number of rsvps:  </h4> 
                     </div>
                 
                 </div>
