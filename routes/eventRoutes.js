@@ -4,6 +4,7 @@ const controller = require('../controllers/eventController');
 const {isCreator, isLoggedIn, isNotCreator} = require('../middleware/auth');
 const { DateTime } = require('luxon');
 const {v4: uuidv4} = require('uuid');
+const {validateNewEvent, validateResult} = require('../middleware/validator');
 
 //router.use();
 
@@ -11,7 +12,7 @@ const {v4: uuidv4} = require('uuid');
 router.get('/', controller.index);
 
 //new event post request
-router.post('/',controller.fileUpload, isLoggedIn, controller.create)
+router.post('/',controller.fileUpload, isLoggedIn, validateNewEvent, validateResult, controller.create)
 
 //gets new event form
 router.get('/newEvent', isLoggedIn, controller.new)

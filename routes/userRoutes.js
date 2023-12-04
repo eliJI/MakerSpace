@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const {isGuest, isLoggedIn} = require('../middleware/auth')
+const {isGuest, isLoggedIn} = require('../middleware/auth');
+const { logInLimiter } = require('../middleware/rateLimiters');
 const controller = require('../controllers/userController');
 
 //shows new user form
@@ -13,7 +14,7 @@ router.post("/", isGuest, controller.create)
 router.get("/login", isGuest, controller.login)
 
 //sends login request
-router.post('/login',isGuest,  controller.authenticate)
+router.post('/login', logInLimiter, isGuest,  controller.authenticate)
 
 //logs the current user out
 router.get('/logout', isLoggedIn, controller.logout);
