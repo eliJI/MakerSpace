@@ -23,7 +23,7 @@
                             <button type = "submit" formmethod="POST" name="status"  value="NO" formaction="/events/<%= event._id %>/rsvp">NO</button>
                             <button type = "submit" formmethod="POST" name="status" value="MAYBE" formaction="/events/<%= event._id %>/rsvp">MAYBE</button>
                         </form>  
-                        <h4>Number of rsvps:  </h4> 
+                        <h4>Number of rsvps:  <%= rsvp.count%></h4> 
                     </div>
                 
                 </div>

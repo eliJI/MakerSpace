@@ -3,7 +3,7 @@
         
         <h1>Welcome back, <%=user.firstName%></h1>
            <% if (events.length) { %>
-                <p>View your events</p>
+                <h3>View your events</h3>
                 <% events.forEach(event => { %>
                     <a  href = '/events/<%= event.id %>'>
                         <div class = 'preview-container'>
@@ -15,12 +15,29 @@
                                 <button type = "submit" formmethod="POST" formaction="/events/<%= event._id %>?_method=DELETE"><i class="fa-solid fa-trash-can"></i></button>
                             </form>
                         </div>                       
-                    </a>
-                      
+                    </a> 
                <% });  %>   
            <% } else { %>
                 <p>You have not created any events yet</p>
            <% } %>
+
+           <% if (rsvps.length) { %>
+            <h3>My RSVPs</h3>
+            <% rsvps.forEach(rsvps => { %>
+                <a  href = '/events/<%= rsvps.eventId._id %>'>
+                    <div class = 'preview-container'>
+                        <p>
+                            <%= rsvps.eventId.title %>
+                        </p>
+                        <p>
+                            <%=rsvps.status%>
+                        </p>
+                    </div>                       
+                </a> 
+           <% });  %>   
+       <% } else { %>
+            <p>You have not RSVP'd any events yet</p>
+       <% } %>
             
 
 

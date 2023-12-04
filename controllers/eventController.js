@@ -188,7 +188,16 @@ exports.show = (req, res, next) => {
             const oriDateEnd = event.dateEnd
             event.dateStart = DateTime.fromJSDate(event.dateStart).toLocaleString(DateTime.DATETIME_MED);
             event.dateEnd = DateTime.fromJSDate(event.dateEnd).toLocaleString(DateTime.DATETIME_MED);
-            res.render('./event', {event: event})
+
+            //get amount of rsvps and send to template
+            let count = -1;
+            rsvpModel.find({eventId: id, status: "YES"})
+            .then(rsvps => {
+                count = rsvps.length;
+                console.log(rsvps.length); 
+                res.render('./event', {event: event, rsvp: {count: count}})
+            })
+            .catch(err => next(err))
         } else {
             let err = new Error('Cannot find event with ID: ' + id);
             err.status = 404;

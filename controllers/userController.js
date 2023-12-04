@@ -1,4 +1,5 @@
 const UserModel = require('../models/user');
+const RsvpModel = require('../models/rsvp')
 const Event = require('../models/event');
 const flash = require('connect-flash');
 
@@ -9,10 +10,10 @@ exports.new = (req, res, next) => {
 
 exports.profile = (req, res, next) => {
     let id = req.session.user.id;
-    Promise.all([UserModel.findById(id), Event.find({createdBy: id})])
+    Promise.all([UserModel.findById(id), Event.find({createdBy: id}), RsvpModel.find({userId: id}).populate('eventId')])
     .then(results => {
-        const [user, events] = results;
-        res.render('./users/profile', {user: user, events, events});
+        const [user, events, rsvps] = results;
+        res.render('./users/profile', {user: user, events: events, rsvps: rsvps});
     })
     .catch(err => next(err));
 }
