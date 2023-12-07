@@ -1,4 +1,4 @@
-const {body, validationResult} = require('express-validator');
+const {body, validationResult, param} = require('express-validator');
 
 
 /**
@@ -14,7 +14,7 @@ const {body, validationResult} = require('express-validator');
  */
 exports.validateNewEvent = [
     body('title', '').trim().escape(),
-    body('category', 'Please select a category').notEmpty().trim().escape().isIn(['workshops','seminars','meet and greet','convention', 'other']),
+    body('category', 'Invalid category').notEmpty().trim().escape().isIn(['workshops','seminars','meet and greet','convention', 'other']).withMessage('category must be workshops, seminars, meet and greet, convention or other'),
     body('host', 'Please provide a host').notEmpty().trim().escape(),
     body('content', 'content must have 10 characters').notEmpty().isLength({min:10}).trim().escape(),
     body('location', 'location must be valid').notEmpty().trim().escape(),
@@ -34,7 +34,7 @@ exports.validateNewEvent = [
 
 exports.validateEditEvent = [
     body('title', '').trim().escape(),
-    body('category', 'Please select a category').notEmpty().trim().escape().isIn(['workshops','seminars','meet and greet','convention', 'other']),
+    body('category', 'Invalid category').notEmpty().trim().escape().isIn(['workshops','seminars','meet and greet','convention', 'other']).withMessage('category must be workshops, seminars, meet and greet, convention or other'),
     body('host', 'Please provide a host').notEmpty().trim().escape(),
     body('content', 'content must have 10 characters').notEmpty().isLength({min:10}).trim().escape(),
     body('location', 'location must be valid').notEmpty().trim().escape(),
@@ -64,7 +64,8 @@ exports.validateSignUp = [
 ]
 
 exports.validateRsvp = [
-    body('status', 'userId required').notEmpty().trim().escape().isIn(['YES', 'NO', 'MAYBE'])
+    body('status', 'RSVP cannot be empty').notEmpty().trim().escape().isIn(['YES', 'NO', 'MAYBE']).withMessage('RSVP must be YES, NO, or MAYBE'),
+    param('id', 'must have a valid id').notEmpty().trim().escape()
 ]
 
 exports.validateResult = (req, res, next) => {
