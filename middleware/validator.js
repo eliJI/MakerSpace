@@ -63,6 +63,10 @@ exports.validateSignUp = [
     body('password', 'password must be between 8 and 64 characters').notEmpty().isLength({min: 8, max: 64}).trim()
 ]
 
+exports.validateRsvp = [
+    body('status', 'userId required').notEmpty().trim().escape().isIn(['YES', 'NO', 'MAYBE'])
+]
+
 exports.validateResult = (req, res, next) => {
     let errors = validationResult(req);
     if(!errors.isEmpty()) {
